@@ -140,7 +140,7 @@ class Results extends AbstractTag
     protected function getMemberFields(): array
     {
         $return = [];
-        $query = ee()->db->select()->from('member_fields')->get();
+        $query = ee()->db->select()->from('member_fields')->where(['m_field_public' => 'y'])->get();
         if($query->num_rows() >= 1) {
             foreach($query->result_array() AS $row) {
                 $return['m_field_id_' . $row['m_field_id']] = $row['m_field_name'];
