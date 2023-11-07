@@ -2,19 +2,8 @@
 
 namespace Mithra\MemberList\Tags;
 
-class MemberList extends AbstractTag
+class Results extends AbstractTag
 {
-    /**
-     * @var array|string[]
-     */
-    protected array $field_map = [
-        'first_name' => 'm_field_id_1',
-        'last_name' => 'm_field_id_2',
-        'city' => 'm_field_id_6',
-        'state' => 'm_field_id_7',
-        'country' => 'm_field_id_9',
-    ];
-
     /**
      * @return string
      */
@@ -32,20 +21,13 @@ class MemberList extends AbstractTag
             $offset = 0;
         }
 
-        $search_fields = [
-            'first_name' => ee()->input->get('first_name'),
-            'city' => ee()->input->get('city'),
-            'last_name' => ee()->input->get('last_name'),
-            'state' => ee()->input->get('state'),
-            'country' => ee()->input->get('country'),
-        ];
-
+        $search_fields = $this->compileSearchableVars();
         if(!$this->shouldProcess($search_fields)) {
             return ee()->TMPL->no_results();
         }
 
         $members = ee('Model')
-            ->get('ee:Member')
+            ->get('Member')
             ->order($order_by, $sort);
 
         foreach($search_fields AS $key => $value) {
@@ -82,11 +64,11 @@ class MemberList extends AbstractTag
                     }
                 }
 
+                $temp['query_string'] = $_SERVER['QUERY_STRING'];
                 $data[] = $temp;
             }
         }
 
-        //pagination
         ee()->load->library('pagination');
         $pagination = ee()->pagination->create();
 
@@ -118,15 +100,6 @@ class MemberList extends AbstractTag
         }
 
         return $return;
-    }
-
-    /**
-     * @param string $field
-     * @return string
-     */
-    protected function mapField(string $field): string
-    {
-        return $this->field_map[$field] ?? '';
     }
 
     /**
