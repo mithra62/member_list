@@ -1,5 +1,5 @@
 <?php
-namespace Mithra\MemberList\Tags;
+namespace Mithra62\MemberList\Tags;
 
 use ExpressionEngine\Service\Addon\Controllers\Tag\AbstractRoute;
 abstract class AbstractTag extends AbstractRoute

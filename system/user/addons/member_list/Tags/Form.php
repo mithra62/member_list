@@ -1,6 +1,6 @@
 <?php
 
-namespace Mithra\MemberList\Tags;
+namespace Mithra62\MemberList\Tags;
 
 class Form extends AbstractTag
 {
