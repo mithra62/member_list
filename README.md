@@ -14,11 +14,27 @@ The various tags available
 
 ### `results`
 
+Outputs the specified details in conjunction with the `form` tag. Note there is a `no_results` implementation to display a default view.
+
+#### Params
+
+The available parameters used with the `results` Template Tag.
+
+##### `role_id`
+
+##### `limit`
+
+##### `offset`
+
+##### `orderby`
+
 ### `form`
 
 Generates the search form for use in conjunction with the `results` tag. 
 
 #### Params
+
+The available parameters used with the `form` Template Tag.
 
 ##### `return`
 
