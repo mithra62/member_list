@@ -26,7 +26,7 @@ The specific roles, if any, you want to limit the search by. Multiple role_ids c
 
 ##### `limit`
 
-How many results to return per page
+How many results to return per page; defaults to `20`
 
 ##### `url_segment`
 
@@ -38,7 +38,11 @@ The string the preceeds the offset number. Used in conjunction with the `url_seg
 
 ##### `orderby`
 
-How to order results
+The member fields to order results
+
+##### `sort`
+
+Whether `asc` or `desc`. Works in conjunction with `orderby` parameter; defaults to `desc`.
 
 #### Example
 
