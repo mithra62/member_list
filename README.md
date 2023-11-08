@@ -47,7 +47,12 @@ Whether `asc` or `desc`. Works in conjunction with `orderby` parameter; defaults
 #### Example
 
 ```html
-{exp:member_list:results role_id="6|7" limit="10" offset="{segment_2}" orderby="last_name|first_name"}
+  {exp:member_list:results 
+      role_id="6|7" 
+      limit="10" 
+      url_segment="2" 
+      orderby="last_name|first_name"
+  }
     {if no_results}
       <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>
     {/if}
@@ -135,7 +140,12 @@ Mostly used in conjunction with the pagination links
 </div>
 
 <div id="directory_right">
-  {exp:member_list:results role_id="6|7" limit="10" offset="{segment_2}" orderby="last_name|first_name"}
+  {exp:member_list:results 
+      role_id="6|7" 
+      limit="10" 
+      url_segment="2" 
+      orderby="last_name|first_name"
+  }
     {if no_results}
       <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>
     {/if}
