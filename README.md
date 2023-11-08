@@ -28,7 +28,63 @@ The available parameters used with the `results` Template Tag.
 
 ##### `orderby`
 
-### ``exp:member_list:form`
+#### Example
+
+```html
+{exp:member_list:results role_id="6|7" limit="10" offset="{segment_2}" orderby="last_name|first_name"}
+    {if no_results}
+      <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>
+    {/if}
+    <p>
+      <span class="news_title">{first_name} {last_name}</span>
+      <a href="mailto:{email}">{email}</a>
+    </p>
+
+  {if count == {total_results}}
+    {paginate}
+    <div class="itempadbig"><p class="pagination">
+      <table cellpadding="0" cellspacing="0" border="0" class="paginateBorder">
+        <tr>
+          <td><div class="paginateStat">{current_page} of {total_pages}</div></td>
+        </tr>
+        <tr>
+          <td>
+            {pagination_links}
+            {first_page}
+            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-first">First Page</a>
+            {/first_page}
+
+            {previous_page}
+            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-previous">Previous Page</a>
+            {/previous_page}
+
+            {page}
+            {if current_page}
+              {pagination_page_number}
+            {if:else}
+              <a href="{pagination_url}?{exp:member_list:query_string}" class="page-{pagination_page_number} ">{pagination_page_number}</a>
+            {/if}
+            {/page}
+
+            {next_page}
+            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-next">Next Page</a>
+            {/next_page}
+
+            {last_page}
+            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-last">Last Page</a>
+            {/last_page}
+
+            {/pagination_links}
+          </td>
+        </tr>
+      </table>
+      </p></div>
+    {/paginate}
+  {/if}
+{/exp:member_list:results}
+```
+
+### `exp:member_list:form`
 
 Generates the search form for use in conjunction with the `results` tag. 
 
