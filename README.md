@@ -146,29 +146,29 @@ Mostly used in conjunction with the pagination links
         <tr>
           <td>
             {pagination_links}
-            {first_page}
-            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-first">First Page</a>
-            {/first_page}
+		{first_page}
+			<a href="{pagination_url}?{exp:member_list:query_string}" class="page-first">First Page</a>
+		{/first_page}
 
-            {previous_page}
-            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-previous">Previous Page</a>
-            {/previous_page}
+		{previous_page}
+			<a href="{pagination_url}?{exp:member_list:query_string}" class="page-previous">Previous Page</a>
+		{/previous_page}
 
-            {page}
-            {if current_page}
-              {pagination_page_number}
-            {if:else}
-              <a href="{pagination_url}?{exp:member_list:query_string}" class="page-{pagination_page_number} ">{pagination_page_number}</a>
-            {/if}
-            {/page}
+		{page}
+			{if current_page}
+				{pagination_page_number}
+			{if:else}
+				<a href="{pagination_url}?{exp:member_list:query_string}" class="page-{pagination_page_number} ">{pagination_page_number}</a>
+			{/if}
+		{/page}
 
-            {next_page}
-            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-next">Next Page</a>
-            {/next_page}
+		{next_page}
+			<a href="{pagination_url}?{exp:member_list:query_string}" class="page-next">Next Page</a>
+		{/next_page}
 
-            {last_page}
-            <a href="{pagination_url}?{exp:member_list:query_string}" class="page-last">Last Page</a>
-            {/last_page}
+		{last_page}
+			<a href="{pagination_url}?{exp:member_list:query_string}" class="page-last">Last Page</a>
+		{/last_page}
 
             {/pagination_links}
           </td>
