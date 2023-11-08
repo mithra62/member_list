@@ -16,6 +16,18 @@ The various tags available
 
 ### `form`
 
+Generates the search form for use in conjunction with the `results` tag. 
+
+#### Params
+
+##### `return`
+
+The template(s) to direct users to upon form submission
+
+##### `class`
+
+Any CSS class, if any, to apply to the generated form
+
 #### Example
 
 Be aware, that the input names are mapped internally to the specific member field IDs. So you'll only use the Short Name to query on.
