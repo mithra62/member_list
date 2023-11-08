@@ -13,7 +13,7 @@ class Results extends AbstractTag
         $order_by = $this->param('order_by', 'member_id');
         $sort = $this->param('sort', 'desc');
         $role_id = $this->param('role_id');
-        $prefix = $this->param('prefix', 'G');
+        $prefix = $this->param('prefix', 'M');
         $url_segment = ee()->TMPL->fetch_param('url_segment', 2);
         $segment = ee()->uri->segment($url_segment);
         $offset = str_replace($prefix, '', $segment);
@@ -75,9 +75,7 @@ class Results extends AbstractTag
         ee()->TMPL->tagdata = $pagination->prepare(ee()->TMPL->tagdata);
         $pagination->prefix = $prefix;
 
-        $total_items = $total_members;
-        $per_page = $limit;
-        $pagination->build($total_items, $per_page);
+        $pagination->build($total_members, $limit);
         $body = ee()->TMPL->parse_variables(ee()->TMPL->tagdata, $data);
 
         return $pagination->render($body);
