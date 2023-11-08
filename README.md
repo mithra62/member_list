@@ -12,7 +12,7 @@ A replacement for the first party `memberlist` template tags and workflow that a
 
 The various tags available
 
-### `results`
+### `exp:member_list:results`
 
 Outputs the specified details in conjunction with the `form` tag. Note there is a `no_results` implementation to display a default view.
 
@@ -28,7 +28,7 @@ The available parameters used with the `results` Template Tag.
 
 ##### `orderby`
 
-### `form`
+### ``exp:member_list:form`
 
 Generates the search form for use in conjunction with the `results` tag. 
 
