@@ -18,6 +18,8 @@ The various tags available
 
 #### Example
 
+Be aware, that the input names are mapped internally to the specific member field IDs. So you'll only use the Short Name to query on.
+
 ```html
 <div id="member_left">
   <p class="">Find a Member</p>
