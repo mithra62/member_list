@@ -147,10 +147,10 @@ Mostly used in conjunction with the pagination links
       order_by="last_name"
   }
     {if no_results}
-      <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>
+      <h2 style="border:0;">Unfortunately, there are no members available for your search.</h2>
     {/if}
     <p>
-      <span class="news_title">{first_name} {last_name}</span>
+      <span class="news_title">({member_id}) {first_name} {last_name}</span>
       <a href="mailto:{email}">{email}</a>
     </p>
 
