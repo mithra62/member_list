@@ -36,13 +36,13 @@ The number the URL segment is for the offset value (defaults to 2)
 
 The string the preceeds the offset number. Used in conjunction with the `url_segment` parameter; defaults to `M`
 
-##### `orderby`
+##### `order_by`
 
 The member fields to order results
 
 ##### `sort`
 
-Whether `asc` or `desc`. Works in conjunction with `orderby` parameter; defaults to `desc`.
+Whether `asc` or `desc`. Works in conjunction with `order_by` parameter; defaults to `desc`.
 
 #### Example
 
@@ -51,7 +51,7 @@ Whether `asc` or `desc`. Works in conjunction with `orderby` parameter; defaults
       role_id="6|7" 
       limit="10" 
       url_segment="2" 
-      orderby="last_name|first_name"
+      order_by="last_name|first_name"
   }
     {if no_results}
       <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>
@@ -144,7 +144,7 @@ Mostly used in conjunction with the pagination links
       role_id="6|7" 
       limit="10" 
       url_segment="2" 
-      orderby="last_name|first_name"
+      order_by="last_name"
   }
     {if no_results}
       <h2 style="border:0;">Unfortunately, there are no members available for your search; however, please check back at a later date as members are being added all the time.</h2>

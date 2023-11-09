@@ -27,8 +27,15 @@ class Results extends AbstractTag
         }
 
         $members = ee('Model')
-            ->get('Member')
-            ->order($order_by, $sort);
+            ->get('Member');
+
+        if($order_by) {
+            $order_by = $this->mapField($order_by);
+        }
+
+        if(!$order_by) {
+            $order_by = 'member_id';
+        }
 
         foreach($search_fields AS $key => $value) {
             if($value && $this->mapField($key)) {
@@ -50,7 +57,8 @@ class Results extends AbstractTag
             return ee()->TMPL->no_results();
         }
 
-        $members->offset($offset)
+        $members->order($order_by, $sort)
+            ->offset($offset)
             ->limit($limit);
 
         $data = [];
