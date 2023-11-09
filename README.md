@@ -1,5 +1,5 @@
 # Member List
-A replacement for the first party `memberlist` template tags and workflow that adds some much needed updates and funcctionality. 
+A replacement for the first party `memberlist` template tags and workflow that adds some much needed updates and functionality. 
 
 ## Features
 
