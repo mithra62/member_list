@@ -9,11 +9,11 @@ class Results extends AbstractTag
      */
     public function process(): string
     {
-        $limit = $this->param('limit', 20);
-        $order_by = $this->param('order_by', 'member_id');
-        $sort = $this->param('sort', 'desc');
-        $role_id = $this->param('role_id');
-        $prefix = $this->param('prefix', 'M');
+        $limit = ee('member_list:InputService')->param('limit', 20);
+        $order_by = ee('member_list:InputService')->param('order_by', 'member_id');
+        $sort = ee('member_list:InputService')->param('sort', 'desc');
+        $role_id = ee('member_list:InputService')->param('role_id');
+        $prefix = ee('member_list:InputService')->param('prefix', 'M');
         $url_segment = ee()->TMPL->fetch_param('url_segment', 2);
         $segment = ee()->uri->segment($url_segment);
         $offset = str_replace($prefix, '', $segment);
@@ -22,7 +22,7 @@ class Results extends AbstractTag
         }
 
         $search_fields = $this->compileSearchableVars();
-        if(!$this->shouldProcess($search_fields)) {
+        if(!ee('member_list:InputService')->shouldProcess($search_fields)) {
             return ee()->TMPL->no_results();
         }
 
@@ -39,7 +39,7 @@ class Results extends AbstractTag
 
         if($role_id) {
             $roles = explode('|', $role_id);
-            $role_ids = $this->getRoleMembers($roles);
+            $role_ids = ee('member_list:MemberService')->getRoleMembers($roles);
             if($role_ids) {
                 $members->filter('member_id', 'IN', $role_ids);
             }
@@ -54,7 +54,7 @@ class Results extends AbstractTag
             ->limit($limit);
 
         $data = [];
-        $fields = $this->getMemberFields();
+        $fields = ee('member_list:MemberService')->getMemberFields();
         if($fields) {
             foreach($members->all() AS $member) {
                 $temp = $member->toArray();
@@ -79,72 +79,5 @@ class Results extends AbstractTag
         $body = ee()->TMPL->parse_variables(ee()->TMPL->tagdata, $data);
 
         return $pagination->render($body);
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $default
-     * @return mixed|string
-     */
-    protected function param(string $key, $default = '')
-    {
-        $return = $default;
-        if(ee()->input->get($key)) {
-            $return = ee()->input->get($key);
-        }
-
-        if(ee()->TMPL->fetch_param($key)) {
-            $return = ee()->TMPL->fetch_param($key);
-        }
-
-        return $return;
-    }
-
-    /**
-     * @param array $search_fields
-     * @return bool
-     */
-    protected function shouldProcess(array $search_fields): bool
-    {
-        foreach($search_fields AS $value) {
-            if($value != '') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param array $roles
-     * @return array
-     */
-    protected function getRoleMembers(array $roles): array
-    {
-        $return = [];
-        $query = ee()->db->select()->from('members_roles')
-            ->where_in('role_id', $roles)
-            ->get();
-
-        if($query->num_rows() >= 1) {
-            foreach( $query->result_array() AS $result) {
-                $return[] = $result['member_id'];
-            }
-        }
-
-        return $return;
-    }
-
-    protected function getMemberFields(): array
-    {
-        $return = [];
-        $query = ee()->db->select()->from('member_fields')->where(['m_field_public' => 'y'])->get();
-        if($query->num_rows() >= 1) {
-            foreach($query->result_array() AS $row) {
-                $return['m_field_id_' . $row['m_field_id']] = $row['m_field_name'];
-            }
-        }
-
-        return $return;
     }
 }
